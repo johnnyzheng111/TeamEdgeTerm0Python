@@ -30,9 +30,9 @@ print(f"A fun fact about me is that {funFact}")
 
 # **** Upchallenge! ****
 # Can you also print out the data type of the variables? 
-print("The data type for the 'name' variable is String")
-print("The data type for the 'grade' variable is Integer")
-print("The data type for the 'funFact' variable is String")
+print(type(name))
+print(type(grade))
+print(type(funFact))
 
 
 
@@ -42,17 +42,14 @@ print("The data type for the 'funFact' variable is String")
 
 line1 = "Happy Birthday to You, cha, cha, cha."
 line2 = "Happy Birthday to You, cha, cha, cha."
-line3 = "Happy Birthday dear Johnny"
+line3 = "Happy Birthday dear Johnny,"
 line4 = "Happy Birthday to you!"
 
-print(line1)
-print(line2)
-print(line3)
-print(line4)
+print(f"{line1} {line2} {line3} {line4}")
 # **** Challenge 1: Problem 3 ****
 # Print out a string that has brackets in it.
 
-stringWithBrackets = "these are curly brackets -> {} and these are square brackets -> []"
+stringWithBrackets = "{these are curly brackets} and [these are square brackets]"
 print(stringWithBrackets)
 
 # -------------------------------------------- 
@@ -78,14 +75,14 @@ print(sum)
 # Store the difference between sum (above) and 7 in a variable.
 # Print the difference.
 
-differenceBetweenSumAnd7 = sum - 7
-print(differenceBetweenSumAnd7)
+difference = sum - 7
+print(difference)
 
 # **** Challenge 2: Problem 3 ****
 # Store the product of the difference and 3 in a variable.
 # Print the product.
 
-product = differenceBetweenSumAnd7 * 3
+product = difference * 3
 print(product)
 
 # **** Challenge 2: Problem 4 ****
