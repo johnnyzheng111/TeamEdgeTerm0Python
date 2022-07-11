@@ -1,4 +1,19 @@
 # -------------------------------------------- 
+# Ignore this section. This is just for checking your work
+
+# gen_answer means generated answer!!
+
+from audioop import add
+
+
+def check_answers(gen_answer, correct_answer):
+    if gen_answer == correct_answer:
+        print("Your code works!")
+    else:
+	    print(f"Try again, your code generated {gen_answer} but the correct answer is {correct_answer}")
+
+
+# -------------------------------------------- 
 
 	# You've just learned all about functions. 
 	# Now take what you've learned to create your own
@@ -29,7 +44,8 @@ print("My Simple Calculator")
 
 # Write a function called add_numbers that will take two numbers and return the sum.
 
-
+def add_numbers(num1, num2): 
+	return num1 + num2
 
 
 
@@ -37,20 +53,21 @@ print("My Simple Calculator")
 
 # Write a function called sub_numbers that will take two numbers and return the difference.
 
-
+def sub_numbers(num1, num2):
+	return num1 - num2
 
 
 
 # ------------
 # Testing Code - Uncomment the code below to test your code!
 
-# check_answers(add_numbers(5, 15), 20)
-# check_answers(add_numbers(3, 18), 21)
-# check_answers(add_numbers(12, 28), 40)
+check_answers(add_numbers(5, 15), 20)
+check_answers(add_numbers(3, 18), 21)
+check_answers(add_numbers(12, 28), 40)
 
-# check_answers(sub_numbers(18, 7), 11)
-# check_answers(sub_numbers(11, 9), 2)
-# check_answers(sub_numbers(18, 21), -3)
+check_answers(sub_numbers(18, 7), 11)
+check_answers(sub_numbers(11, 9), 2)
+check_answers(sub_numbers(18, 21), -3)
 
 # -------------------------------------------- 
 
@@ -68,14 +85,16 @@ print("My Simple Calculator")
 
 # Write a function called multiply_numbers that will take two numbers and return the product.
 
-
+def multiply_numbers(num1, num2):
+	return num1 * num2
 
 
 
 
 # Write a function called divide_numbers that will take two numbers and return the quotient.
 
-
+def divide_numbers(num1, num2):
+	return num1 / num2
 
 
 
@@ -83,13 +102,13 @@ print("My Simple Calculator")
 # ------------
 # Testing Code - Uncomment the code below to test your code!
 
-# check_answers(multiply_numbers(10, 3), 30); 
-# check_answers(multiply_numbers(21, 7), 147);
-# check_answers(multiply_numbers(4, 16), 64); 
+check_answers(multiply_numbers(10, 3), 30)
+check_answers(multiply_numbers(21, 7), 147)
+check_answers(multiply_numbers(4, 16), 64) 
 
-# check_answers(divide_numbers(24, 100), `.24`);
-# check_answers(divide_numbers(21, 7), `3`);
-# check_answers(divide_numbers(15, 4), `3.75`);
+check_answers(divide_numbers(24, 100), .24)
+check_answers(divide_numbers(21, 7), 3)
+check_answers(divide_numbers(15, 4), 3.75)
 
 # -------------------------------------------- 
 
@@ -102,8 +121,21 @@ print("My Simple Calculator")
 
 # -------------------------------------------- 
 
-
-
+def user_inputs():
+	operation = input("What operation would you like to do?" + " Your choices are Addition, Subtraction, Multiplication, and Division ")
+	value1 = int(input("What is your first number?"))
+	value2 = int(input("What is your second number?"))
+	if(str(operation) == "Addition"):
+		print("Addition! Result: " + str(add_numbers(value1, value2)))
+	elif(str(operation) == "Subtraction"):
+		print("Subtraction! Result: " + str(sub_numbers(value1, value2)))
+	elif(str(operation) == "Multiplication"):
+		print("Multiplication! Result: " + str(multiply_numbers(value1, value2)))	
+	else:
+		print("Division! Result: " + str(divide_numbers(value1, value2)))
+		
+# testing the program
+user_inputs()
 
 
 
@@ -141,6 +173,18 @@ print("My Simple Calculator")
   
 # -------------------------------------------- 
 
+def mod_numbers(num1, num2): 
+		return num1 % num2
+
+def find_gcd(num1, num2): 
+	while num1 != num2: 
+		if num1 > num2: 
+			num1 -= num2
+		else:
+			num2 -= num1
+	return num1
+
+print(find_gcd(2, 4))
 
 
 
@@ -150,22 +194,3 @@ print("My Simple Calculator")
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-# -------------------------------------------- 
-# Ignore this section. This is just for checking your work
-
-def check_answers(gen_answer, correct_answer):
-    if gen_answer == correct_answer:
-        print("Your code works!")
-    else:
-	    print(f"Try again, your code generated {gen_answer} but the correct answer is {correct_answer}")
