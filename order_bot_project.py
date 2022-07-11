@@ -23,7 +23,7 @@
 	# Don't forget the tax and tip!
 
 # After this program finishes running, it should output a receipt with:
-        #1. the items you ordered and their cost 
+    #1. the items you ordered and their cost 
 	#2. a total for your order before tax
 	#3. a total for your order after tax
 	#4. the amount of your tip 
@@ -42,8 +42,16 @@
 
 # --------------------------------------------
 
-
-
+drink_price = 0
+meal_price = 0
+dessert_price = 0
+total_price = drink_price + meal_price + dessert_price
+total_people = 3
+tax = 0.0725 # california sales tax 
+tip = 0.15
+each_person_pays = (total_price + tax + tip) / total_people
+item_price = 0
+item_name = ""
 # -------------------------------------------- 
 
 # Part 2:
@@ -54,9 +62,31 @@
 
 # --------------------------------------------
 
+meal_menu = ["Steak", "Spaghetti", "Pizza", "Burgers"]
+meal_price = [29.99, 14.99, 14.99, 9.99]
 
+drink_menu = ["Coke", "Wine", "Beer", "Lemonade"]
+drink_price = [2.99, 29.99, 7.99, 4.99]
 
+dessert_menu = ["Cake", "Ice Cream", "Cupcake", "Macaroons"]
+dessert_price = [15.99, 6.99, 3.99, 6.99]
 
+def print_menu(): 
+  print("Meals:")
+  print("-----------------------------")
+ 
+  for i in range(len(meal_menu)): 
+    print(meal_menu[i] + " Price: $" + str(meal_price[i]))
+    
+  print("Drinks:")
+  print("-----------------------------")
+  for i in range(len(drink_menu)):
+    print(drink_menu[i] + " Price: $" + str(drink_price[i]))
+  print("Desserts:")
+  print("-----------------------------")
+  for i in range(len(dessert_menu)): 
+    print(dessert_menu[i] + " Price: $" + str(dessert_price[i]))
+  print("-----------------------------")
 
 
 # -------------------------------------------- 
@@ -71,7 +101,35 @@
 # Remember! Functions are meant to be reusable, so write a function that will work when called repeatedly!
 
 # --------------------------------------------
+order_type = input("What would you like to order ? A Meal, Dessert, or a Drink?")
+# Should be a Meal, Drink, or Dessert
+order = input("Awesome! Pick an item from the list above.")
+item_name = order
 
+
+def take_order(): 
+  if str(order_type) == "Meal": 
+    for i in range(len(meal_menu)): 
+      if(order == meal_menu[i]): 
+        return float(meal_price[i])
+      else: 
+        return -1
+  elif str(order_type) == "Drink": 
+    for i in range(len(drink_menu)): 
+      if(order == drink_menu[i]): 
+        return float(drink_price[i])
+      else: 
+        return -1
+  elif str(order_type) == "Dessert":
+    for i in range(len(dessert_menu)): 
+      if(order == dessert_menu[i]): 
+        return float(dessert_price[i])
+      else: 
+        return -1
+  else: 
+    print("please enter a valid order!")
+    return -1
+    
 
 
 
@@ -96,11 +154,13 @@
 # Remember! Functions are meant to be reusable, so write a function that will work when called for each person!
 
 # -------------------------------------------- 
-
-
-
-
-
+def cost_of_order(): 
+  tip = input("How much would you like to tip? ex. 15% would be 0.15.")
+  tip = float(tip)
+  tip_amount = tip * total_price
+  tax_amount = tax * total_price
+  # print("Cost of all ordered items: " str(total_price))
+  return "Total Cost of the order: " + str(total_price + tax_amount + tip_amount)
 
 
 
@@ -124,6 +184,13 @@
 
 # -------------------------------------------- 
 
+def print_receipt(item_name, item_price): 
+  print("Cost of each item: ")
+  print("Item Price: " + str(item_price))
+  print("Item Name: " + str(item_name))
+  print("Tax: " + str(tax * item_price))
+  print("Tip: " + str(tip * item_price))
+  
 
 
 
@@ -135,9 +202,16 @@
 
 # --------------------------------------------
 
+print_menu()
 
+price = take_order()
+item_price = price
+total_price += price
+print(price)
 
+print(cost_of_order())
 
+print_receipt(item_name, item_price)
 
 
 
@@ -152,3 +226,4 @@
 # - Implement a rewards system (stamp cards, buy one get one, etc)
 
 # --------------------------------------------
+
