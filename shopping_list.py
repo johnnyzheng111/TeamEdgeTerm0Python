@@ -12,36 +12,45 @@
  # 
  # ***************************************************************/
 
+# today was a bit more complicated, this is a simple version of a shopping list helper!
 active = True
 
 print("Welcome to Shopping List!")
 
-welcome_message = "Hi! I'm your shopping assistant. Let me take your order. \n You can type 'add milk' to add milk to your shopping list. \n or you can type 'remove milk' to remove it. \n"
+welcome_message = "Hi! I'm your shopping assistant. Can I add or remove from your shopping list?\n"
 
 print(welcome_message)
 
 
 #-->Todo: declare a shopping_list list
+shopping_list = ["orange"]
 
+if active: 
+    print("check")
+else: 
+    print("goodbye")
 
 def prompt_user():
-
     reply = input("What do you want to add or remove?  >>  ")
-
     return reply
 
-def check_answer(ans):
-    pass
+def check_answer(item):
+    if item in shopping_list: 
+        remove_item(item)
+        print(shopping_list)
+    else: 
+        add_item(item)
+        print(shopping_list)
 
 
-def add_item():
+def add_item(item):
 #this function can take in a string and store it in an array
-    pass
+    shopping_list.append(item)
 
 
-def remove_item():
-    pass
+def remove_item(item):
+    shopping_list.remove(item)
+
 
 while active:
-
     check_answer(prompt_user()) #this makes the program continously prompt and check response while the boolean 'active' returns True
