@@ -25,7 +25,8 @@ for x in range(11):
    
 
 #-->TODO: Write a loop that prints a happy birthday message for every year you have been alive.
-
+for i in range(1, 17): 
+    print("Happy Birthday! You are now " + str(i))
 
 
 print("------------------- CHALLENGE 2 : ITERATOR ----------------------")
@@ -38,29 +39,45 @@ for x in colors:
     print("The color is: " + x)
 
 #-->TODO: Declare a list with at least 5 animals. You provide the animals.
-animals = []
+animals = ["Squid", "Octopus", "Lion", "Monkey", "Iguana"]
 
 #-->TODO: Print all the animals in the array with a for loop. 
-
+for animal in animals: 
+    print(animal)
 
 
 print("------------------- CHALLENGE 3 : EVEN COUNTDOWN ------------------")
 
 
 #The line below makes a random number between 0-50 and assigns it to the random variable
-random = random.randint(0, 50)
+random1 = random.randint(0, 50)
 
 #this if/else statement checks if the number is even using the modulo operator (%)
-if random % 2 == 0:
-    print(str(random) + " is even!")
+if random1 % 2 == 0:
+    print(str(random1) + " is even!")
 else:
-    print(str(random) + " is odd!")
+    print(str(random1) + " is odd!")
 
 #-->TODO: Write a function that counts BACKWARDS from 100 and prints only even numbers
-
-
+def count_backwards(): 
+    for x in range (100, 0, -2): 
+        print(str(x))
+count_backwards()
 #-->TODO: Write a function that counts BACKWARDS from the given random number and prints only odd numbers
 
+def random_odd_backwards(num):
+    if(num % 2 == 1): 
+        # if num is odd
+        for i in range(num, 0, -2):
+            print(str(i))
+    else: 
+        # num would be even
+        num += 1
+        for i in range(num, 0, -2): 
+            print(str(i))
+
+random_number = random.randint(0, 300)
+random_odd_backwards(random_number)
 
 print("------------------- CHALLENGE 4 : Finder ------------------")
 
@@ -72,16 +89,20 @@ else:
     print("No, that color is not one of my favorites")
 
 #-->TODO Declare a list of any strings you  want: cities, friends, movies, etc.
-
+cities = ["San Jose","Oakland","NYC","Honolulu","Juneau","Beijing","Shanghai","Los Angeles"]
 
 
 #-->TODO Write function to prompt the user to "Guess" if an element is present in your list. Store their response in a variable. 
 #   --> If their guess is in your list, print CONGRATULATIONS!
+def guess_city(guess): 
+    for i in range(len(cities)): 
+        if str(guess) == cities[i]: 
+            return "CONGRATULATIONS!"
+    return "Sorry, try again."
 
-
+guessAttempt = input("Guess if a city is in my list!")
 #-->TODO Call your function.
-
-
+print(guess_city(guessAttempt))
 
 print("------------------- CHALLENGE 5 : Nested ------------------")
 
@@ -98,6 +119,17 @@ for color in colors:
 
 
 #-->TODO Write a function that prints every letter in a sentence that a user enters.
+def print_letters(sentence): 
+    words = sentence.split(" ")
+    for word in words: 
+        for char in word: 
+            print(" - " + char)
 
-
+sentence = input("Input a sentence to see every letter inside it!")
 #-->CHALLENGE: Let the user know which word is the shortest one!
+def shortest_word(sentence):
+    words = sentence.split(" ")
+    return min(words, key=len)
+
+print(print_letters(sentence))
+print("The shortest word in your sentence is " + str(shortest_word(sentence)))
