@@ -20,9 +20,9 @@ from time import sleep
 
 print("-------------------  SUPERHERO !!  -------------------")
 
-DELAY = 10
+DELAY = 0
 DAMAGE_LIMIT = 5
-MAJOR_BLOW = DAMAGE_LIMIT -2
+MAJOR_BLOW = DAMAGE_LIMIT - 2
 LIVES_TOP_RANGE = 60
 LIVES_BOTTOM_RANGE = 40
 rounds = 1

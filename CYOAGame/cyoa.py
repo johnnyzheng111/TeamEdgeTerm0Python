@@ -45,7 +45,7 @@ class Location:
     self.subLocations = subLocations
         # self.key = key
 class subLocation: 
-  def __init(self, name=None, description=None, items=None, npcs=None, belongingTo=None)
+  def __init__(self, name=None, description=None, items=None, npcs=None, belongingTo=None):
     self.name = name  
     self.description = description
     self.items = items
@@ -103,18 +103,19 @@ class NPCs:
     # water purifier at the water stream once to survive at least once
 
 class Item: 
-  def __init__(self, name=None, type=None, location=None, healthValue=None, hydrationValue=None, nutritionValue=None, experienceValue=None): 
+  def __init__(self, name=None, type=None, location=None, subLocation=None, healthValue=None, hydrationValue=None, nutritionValue=None, experienceValue=None, attackValue=None): 
     self.name = name
     self.type = type 
     # weapons - increases attackValue of character
     # consumables - increases healthValue, hydrationValue, nutritionalValue, etc
     self.location = location
+    self.subLocation = subLocation
     # for consumables only
     self.healthValue = healthValue
     self.hydrationValue = hydrationValue
     self.nutritionValue = nutritionValue
     self.experienceValue = experienceValue
-  
+    self.attackValue = attackValue
 #************** CREATION OF VARIABLES *********************
 
 # starting values 
@@ -127,27 +128,28 @@ player.health = 100
 player.hydration = 78
 player.nutrition = 85
 
-### SIDE CHARACTERS ### 
+### SIDE CHARACTERS ### 3
 
 loveInterest = NPCs()
 loveInterest.name = "Your Love Interest"
-loveInterest.type = "Side Character"
-loveInterest.location = ""
+loveInterest.type = "Side Character" ;
+loveInterest.location = "field with flowers"
+loveInterest.advice = "'Hey...I'm Olive. Nice to meet you.' Warm eyes stare into yours and a smile graces your face. You finally feel at peace."
 
 wiseMan = NPCs() 
 wiseMan.name = "Wise Man"
 wiseMan.type = "Side Character"
-wiseMan.location = ""
-
+wiseMan.location = "hollow tree stump"
+wiseMan.advice = "'I've been asleep for a while haven't I?' he pauses. 'I came from just around the riverbend a couple of years ago' he looks around at the large tree behind him. 'This is my tree hollow. You're welcome to stay, but I don't have any food to share. It's hard enough to come by now that I'm getting older and my traps are becoming less effective.' A small looking raccoon-dog scampers to his side. 'This is Jengo!' He smiles. 'Jengo has stuck by me for the last couple of months after I found him as a runt.' He mumbles something that you can't quite make out, and guffaws wholehartedly then promptly starts hacking and coughing. You smile and laugh along awkwardly. 'You need advice, soldier?' he states, boring into your eyes with his electric blue ones. You're suprised he can still make out your army uniform with all the dirt caked on. 'Be careful, and watch out for the monsters. Oh, and remember to hydrate' This makes you uneasy. You know riverwater can be deadly and you have the only water purifier for miles. You smile, and say 'Ok'. You turn to leave, and he says an old AKSA saying you distinctly remember hushed whispers about from your childhood:'May your prayers be heard by your people and may you forever feel at peace.' He salutes you the traditional AKSA way, and makes his way back into the hollow before you can reply with the expected response, 'And you, much fortune'."
 
 ### ENEMIES ###
 
 enemy1 = NPCs()
-enemy1.name = ""
-enemy1.description = ""
+enemy1.name = "GENDOM wolf"
+enemy1.description = "An abnoramlly large deadly mammal"
 enemy1.type = "Enemy"
-enemy1.location = ""
-enemy1.attackValue = 0.0
+enemy1.location = "forest near the camp"
+enemy1.attackValue = 5.0
 
 enemy2 = NPCs()
 enemy2.name = ""
@@ -208,7 +210,7 @@ enemy9.attackValue = 0.0
 
 stream = Location()
 stream.name = "Stream"
-stream.description ="You come across a stream. "
+stream.description ="You come across a stream."
 stream.items = ["raw water"]
 stream.paths = ["Middle Of Forest"]
 
@@ -220,12 +222,11 @@ middleofForest.paths = ["stream" , "hollow tree stump" , "camp" , "clearing"]
 middleofForest.npcs = []
 
 
-
 city = Location()
 city.name = ""
 city.description = ""
 city.items = [""]
-city.paths = [""]
+city.paths = ["town"]
 city.npcs = [""]
 
 
@@ -233,73 +234,275 @@ town = Location()
 town.name = ""
 town.description = ""
 town.items = [""]
-town.paths = [""]
+town.paths = ["city" , "clearing"]
 town.npcs = [""]
 
 
 
 
-# Locatio CAMP
+## Location CAMP ##
 camp = Location()
 camp.name= "camp"
 camp.description ="As you walk further through the forest, you stumble upon a deserted camp. You are too weakened to be concerned by the potential of danger to ponder why it might be there. What do you choose to explore in the camp area?"
-camp.items = ["tent"]
-camp.paths =["in tent", "camp area", "forest near camp", "cave", "middle forest", "wise man"]
+camp.items = ["Tent","Axe"]
+camp.paths =["tent", "camp area", "forest near camp", "cave", "middle forest", "hollow tree stump"]
 camp.npcs = []
 camp.visited = False
 
-# subLocation for camp
-in_tent = subLocation()
-in_tent.name= "in tent"
-in_tent.description ="You hesitantly step into the abandoned tent. A dusky smell tickles your nostrils--it smells faintly of dried blood. The air is thick with your uncertainty and you strive to avoid the humidity by covering your mouth and nose with your shirt. You look to see what might be useful to you."
-in_tent.items = ["knife"]
-in_tent.paths =["camp"]
-in_tent.npcs = []
-in_tent.belongingTo = ["camp"]
+# subLocation for CAMP(tent)
+tent = subLocation()
+tent.name= "tent"
+tent.description ="You hesitantly step into the abandoned tent. A dusty musk tickles your nostrils--it smells faintly of dried blood. The air is thick with your uncertainty and you strive to avoid the humidity by covering your mouth and nose with your shirt. You look to see what might be useful to you."
+tent.items = ["Knife","Lighter","Bandaid"]
+tent.npcs = []
+tent.belongingTo = ["camp"]
 
-# subLocation for camp
+# subLocation for CAMP(camp area)
 camp_area = subLocation()
 camp_area.name= "camp area"
-camp_area.description ="You see a thin trail of smoke floating up from a recently put-out fire. You feel a bit of apprehension. They "
-camp_area.items = []
-camp_area.paths =["camp"]
+camp_area.description ="You see a thin trail of smoke floating up from a recently put-out fire. You feel a bit of apprehension. It hasn't been long since the camp's inhabitants were here..."
+camp_area.items = ["Wood"]
 camp_area.npcs = []
 camp_area.belongingTo = ["camp"]
 
-# subLocation for camp
+# subLocation for CAMP(forest near the camp) with enemy
 forest_near_camp = subLocation()
-forest_near_camp.name= "forest near camp"
-forest_near_camp.description =""
+forest_near_camp.name= "forest near the camp"
+forest_near_camp.description ="You exit the camp and walk towards the forest on the other side where you see a GENDOM, or genetically modified, wolf among the trees just 10 feet from the site. It's foaming at the mouth, and you assess that it has probably contracted some uncurable sickness. It snarls at you, it's teeth are stained red and yellow and bits of flesh escape with drool. It looks like it's coming straight for you."
 forest_near_camp.items = []
-forest_near_camp.paths =["camp"]
 forest_near_camp.npcs = []
 forest_near_camp.belongingTo = ["camp"]
 
-# location CAVE
+## location CAVE(cave) ##
 cave = Location()
 cave.name= "cave"
-cave.description =""
-cave.items = ["fish"]
-cave.paths =["camp", "field wi", "cave", "middle forest", "wise man"]
+cave.description ="You come across a cave opening under a couple of logs in the forest. Sounds of running water can be heard."
+cave.items = ["Fish"]
+cave.paths =["camp", "field with flowers", "small lake", "stalactites"]
 cave.npcs = []
 cave.visited = False
 
+# subLocation for CAVE(small lake) with enemy
+small_lake = subLocation()
+small_lake.name= "small lake"
+small_lake.description = ""
+small_lake.items = []
+small_lake.npcs = []
+small_lake.belongingTo = ["cave"]
 
+# subLocation for CAVE(stalactites)
+stalactites = subLocation()
+stalactites.name= "stalactites"
+stalactites.description = ""
+stalactites.items = ["Stalactites","Bones"]
+stalactites.npcs = []
+stalactites.belongingTo = ["cave"]
 
+## location FIELD with flowers(location(FIND love interest)) ##
+field = Location()
+field.name= "Field with flowers"
+field.description =""
+field.items = ["Water"]
+field.paths =["camp", "field with flowers", "small lake", "stalactites"]
+field.npcs = []
+field.visited = False
+
+# subLocation for FIELD(river)
+river = subLocation()
+river.name= "river"
+river.description = ""
+river.items = [""]
+river.npcs = []
+river.belongingTo = ["field"]
+
+# subLocation for FIELD(cottage in the meadow)
+cottage = subLocation()
+cottage.name= "Cottage in the meadow"
+cottage.description = ""
+cottage.items = [""]
+cottage.npcs = []
+cottage.belongingTo = ["field"]
+
+# subLocation for FIELD(edge of a wood)
+edge = subLocation()
+edge.name= ""
+edge.description = ""
+edge.items = [""]
+edge.npcs = []
+edge.belongingTo = ["field"]
 
 ### ITEMS ### 
 
     ## WEAPONS ##
     # Guns: Glock, AK-47, AR-15, Minigun, etc
-    # Melee Weapons: Baseball Bat, Knife, Katana, Brass Knuckles
+    # Melee Weapons: Baseball Bat, Knife, Katana, Brass Knuckles, Axe
+item1 = Item()
+item1.name = "Glock-19"
+item1.type = "weapon"
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = None
+item1.hydrationValue = None
+item1.nutritionValue = None
+item1.experienceValue = None
+item1.attackValue = 15.0
 
+item1 = Item()
+item1.name = "AK-47"
+item1.type = "weapon"
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 35.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+item1 = Item()
+
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+item1 = Item()
+item1.name = ""
+item1.type = ""
+item1.location = ""
+item1.subLocation = ""
+item1.healthValue = 0.0
+item1.hydrationValue = 0.0
+item1.nutritionValue = 0.0
+item1.experienceValue = 0.0
+item1.attackValue = 0.0
+
+
+# self.healthValue = healthValue
+#     self.hydrationValue = hydrationValue
+#     self.nutritionValue = nutritionValue
+#     self.experienceValue = experienceValue
+#     self.attackValue = attackValue
     ## CONSUMABLES ## 
-    # Food: Burrito, Sandwich, etc
+    # Food: Burrito, Sandwich,fish, etc
     # Drinks: Water, Mountain Dew, Beer, Lemonade, etc
     # Medical items: Bandaid, First-Aid Kit, etc
 
     ## Experience ##
-  
+    # Stalactites, Bones, Wood, Tent, Lighter
 
 
 def check_answer(input): 
@@ -309,12 +512,17 @@ def check_answer(input):
   if input_message == "help": 
     print("Here are some commands you can run...")
     # commands: 
+    # go -> head to a location next to this one
     # help -> lists the possible commands a player can do
     # location -> show what place the player is currently in
     # grab -> take an object
     # consume -> drink/eat a food/drink item for consumption
     # look -> show what the surroundings ar
     # inventory -> shows what items the character currently has 
+  elif input_message == "go": 
+    message_list = input_message.split(" ")
+    message = message_list[1:]
+    new_room = " ".join(message)
     # help page *to be filled out*
   elif input_message == "location": 
     # print the current location that the main character is in
@@ -326,6 +534,8 @@ def check_answer(input):
 
   elif input_message = "inventory":
 
+  elif input_message = "end": 
+    # end the game here
   else:   
     print("Please enter in a valid command!")
   
@@ -335,7 +545,7 @@ def prompt_user():
 #****************** START THE GAME ******************
 def Start(): 
   global name
-  print("Welcome to 'Your New Destiny', Krawfen soldier. You have just betrayed secrets to the AKSA organization, the Krawfen empire's sworn enemy, and they pursue you while you run blindly into the woods located in the outskirts of your town. As you sprint through the vegetation, you look over your shoulder and see that the AKSA's army is falling behind and their shouts start to get quieter and quieter. You hide among the shrubs and bushes on the dirt floor, realizing your pursuers have lost you. A fleeting spark of hope feels like a lit fire in the pit of your stomach. Despite this, you find yourself alone in an expansive forest with nothing but a small pack containing crackers and a water purfier. As you peer through the genetically modified pines of 2084, you start to realize the implications of your situation. You are determined to survive.")
+  print("Welcome to 'Your New Destiny', Krawfen soldier. You have just betrayed secrets to the AKSA organization, the Krawfen empire's sworn enemy, and they pursue you while you run blindly into the woods located in the outskirts of your town. As you sprint through the vegetation, you look over your shoulder and see that the AKSA's army is falling behind and their shouts start to get quieter and quieter. You hide among the shrubs and bushes on the dirt floor, realizing your pursuers have lost you. A fleeting spark of hope feels like a lit fire in the pit of your stomach. Despite this, you find yourself alone in an expansive forest with nothing but a small pack containing crackers and a water purfier. You don't know what kinds of people and animals you will find in these woods. This used to be a testing site for freak animal combinations. As you peer through the genetically modified pines of 2084, you start to realize the implications of your situation. You are determined to survive.")
   name = input("What is your name, soldier?")
   
   print("Welcome, " + name)
@@ -346,3 +556,21 @@ def Start():
     # write a function to check the answesr from the user
     
 Start()
+
+
+###
+# def return_element(list):
+#     ret_string = ""
+#     for l in list: 
+#         ret_string += str(l) + ", "
+#         if l == list[len(list)-1]: 
+#             ret_string += str(l) + ""
+#     return ret_string
+
+# print("My name is " + str(new_dict["name"]) + ".\n" 
+# + "Am I an adult? " + str(new_dict["adult"]) + ".\n" 
+# + "My age is " + str(new_dict["age"]) + ".\n"
+# + "My hobbies are " + return_element(new_dict["hobbies"]) + ".\n" 
+# + "Has this dictionary been modified? Yes!" + new_dict["modification"] + "."
+# )
+###

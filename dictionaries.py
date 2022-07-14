@@ -40,6 +40,12 @@ print(dictionary)
 
 ##################################  MY dictionary ########################### #/
 
+new_dict = {
+    "name": "Johnny",
+    "adult": False, 
+    "age": 16,
+    "hobbies": ["tennis", "reading", "coding", "eating"]
+}
 
 
 
@@ -52,24 +58,54 @@ print(dictionary)
 print("------------------- CHALLENGE 2 : MODIFY   -------------------")
 
 #-->TODO: Print your dictionary you created above
-
+print(new_dict)
 
 #-->TODO: Update the dictionary you just created  by adding new properties and values, including list elements, in this section.
-
+# new_dict["name"] = "random"
+new_dict["favorite subject"] = "mathematics" 
+new_dict["favorite food"] = "noodles"
+new_dict["hobbies"].append("talking to people")
 
 #-->TODO: Print your dictionary again and observe changes
+print(new_dict)
 
-
-print("------------------- CHALLENGE 3 : MEHTODS   -------------------")
+print("------------------- CHALLENGE 3 : METHODS   -------------------")
 
 
 #-->TODO: Make a method that will update your dictionary value. It should take in a dictionary and return it modified.
-
+def update_dict(dictionary, key, value): 
+    dictionary[key] = value
+    return dictionary
 
 #-->TODO: Call the method.
-
+# print(update_dict(new_dict, ))
 
 
 print("------------------- CHALLENGE 4 : LITERALLY   -------------------")
 
 #-->TODO: Put it all together using a string literal to tell the story of your dictionary!
+# My table: 
+def return_elements(list):
+    ret_string = ""
+    for l in list: 
+        ret_string += str(l) + ", "
+        if l == list[len(list)-1]: # if it's the last element, we don't want to add another space and comma
+            ret_string += str(l) + ""
+    return ret_string
+
+print("My name is " + str(new_dict["name"]) + ".\n" 
++ "Am I an adult? " + str(new_dict["adult"]) + ".\n" 
++ "My age is " + str(new_dict["age"]) + ".\n"
++ "My hobbies are " + return_elements(new_dict["hobbies"]) + ".\n" 
++ "Has this dictionary been modified? Yes! " + str(update_dict(new_dict, "age", 18)) + "."
+)
+
+# Brandon's table: 
+# def stringLiteral(dict): 
+#     stringLit = ""
+#     for key,value in dict.items(): 
+#         stringLit = str(key) + ","
+#         stringLit = str(value) + ","
+#     return stringLit
+
+# print(stringLiteral(new_dict))
